@@ -40,4 +40,15 @@ class SkillDependencies
     {
         return $this->requirementsByRequiredSkill[$requiredSkill] ?? [];
     }
+
+    public function toCsv(): string
+    {
+        $lines = [];
+        foreach ($this->requirementsByRequiringSkill as $requiring => $requiredSkills) {
+            foreach ($requiredSkills as $required) {
+                $lines[] = "$requiring;$required";
+            }
+        }
+        return implode("\n", $lines);
+    }
 }
