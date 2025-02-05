@@ -7,6 +7,7 @@
         "php": "^8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "gotenberg/gotenberg-php": "^2.12",
         "phpoffice/phpword": "^1.1",
         "skilldisplay/phptoolkit": "dev-master@dev",
         "symfony/console": "6.2.*",
