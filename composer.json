@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "gotenberg/gotenberg-php": "^2.12",
+        "guzzlehttp/guzzle": "^6.5 || ^7.9",
         "phpoffice/phpword": "^1.1",
         "skilldisplay/phptoolkit": "dev-master@dev",
         "symfony/console": "6.2.*",
