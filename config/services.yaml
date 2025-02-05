@@ -4,6 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.skilldisplay_api_key: '%env(SKILLDISPLAY_API_KEY)%'
+    app.skilldisplay_domain: '%env(SKILLDISPLAY_DOMAIN)%'
+    app.gotenberg_api_url: '%env(GOTENBERG_API_URL)%'
 
 services:
     # default configuration for services in *this* file
@@ -22,3 +25,27 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    SkillDisplay\PHPToolKit\Configuration\Settings:
+        arguments:
+            $apiKey: '%app.skilldisplay_api_key%'
+            $domain: '%app.skilldisplay_domain%'
+
+    skilldisplay.guzzle_client:
+        class: GuzzleHttp\Client
+
+    App\Command\SkillsetPdfExport:
+        arguments:
+            $client: '@skilldisplay.guzzle_client'
+
+    App\Command\SkillsetWordExport:
+        arguments:
+            $client: '@skilldisplay.guzzle_client'
+
+    gotenberg.guzzle_client:
+        class: GuzzleHttp\Client
+
+    App\Export\Pdf\GotenbergPdfRenderer:
+        arguments:
+            $gotenbergApiUrl: '%app.gotenberg_api_url%'
+            $httpClient: '@gotenberg.guzzle_client'

@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="skill-cards.css" />
+{% endblock %}
+
+{% block body %}
+    {% for skill in skills %}
+    <div class="skill-card">
+        <h2>{{ skill.title }} <span class="domain-tag">{{ skill.asArray.domainTag.title }}</span></h2>
+        <p class="skill-id">{{ skill.id }}</p>
+        <p class="skill-tags">
+        {% for tag in skill.asArray.tags %}
+            #{{ tag.title }}
+        {% endfor %}
+        </p>
+
+        {{ skill.description | raw }}
+
+        <h3>Goals</h3>
+        {{ skill.asArray.goals | raw }}
+
+        <h3>Links</h3>
+        <ul>
+            {% for link in skill.asArray.links %}
+                <li>{{ link.title }}: {{ link.url }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="skill-card">
+        <h2>{{ skill.title }}</h2>
+        <p>Owner: {{ skill.asArray.owner.firstName }} {{ skill.asArray.owner.lastName }}</p>
+        <table>
+            <tr>
+                <td>
+                    <h3>Required for this skill</h3>
+                    <ul>
+                        {% for prereq in skill.asArray.prerequisites %}
+                            <li>{{ prereq.title }} ({{ prereq.uid }})</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <h3>Requiring this skill</h3>
+                    <ul>
+                        {% for req in requiringSkills[skill.id] %}
+                            <li>{{ req.title }} ({{ req.uid }})</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+{% endblock %}

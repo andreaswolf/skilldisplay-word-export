@@ -1,0 +1,39 @@
+@page {
+    margin: 5mm;
+    size: A5 landscape;
+}
+
+h2, h3, h4 {
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+table {
+    width: 100%;
+}
+td {
+    width: 50%;
+    vertical-align: top;
+}
+
+.domain-tag {
+    font-size: 0.7rem;
+    float: right;
+}
+.skill-card {
+    page-break-after: always;
+}
+.skill-id {
+    float: right;
+    color: #666;
+}
+.skill-id::before {
+    content: 'uid ';
+    font-size: 0.8rem;
+    color: #999;
+}
+
+ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
